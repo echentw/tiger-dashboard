@@ -9,6 +9,14 @@
   font-style: normal;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 267px;
+  margin: auto;
+  justify-content: space-between;
+}
+
 .box {
   font-size: 8px;
   font-family: "Pokemon GB", Arial, sans-serif;

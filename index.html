@@ -6,15 +6,28 @@
     <link rel="stylesheet" href="style.css">
   </header>
   <body>
-    <div class="box" style="height: 35px">
-      <div style="font-size: 8px">CURRENT TIME</div>
-      <div id="current-time"></div>
-      <i style="margin-top: 0px"></i>
+
+    <div class="row">
+
+      <div class="box" id="time" style="width: 125px; height: 45px; margin-right: 5px">
+        <div style="font-size: 8px">CURRENT TIME</div>
+        <div id="current-time"></div>
+        <i style="margin-top: 10px"></i>
+      </div>
+
+      <div class="box" id="weather" style="width: 125px; height: 45px; margin-left: 5px">
+        <div style="font-size: 8px">WEATHER</div>
+        <div id="today-weather"></div>
+      </div>
+
     </div>
+
     <div class="box" style="height: 100px">
-      <div style="font-size: 8px">NEXT N TRAIN ETAs</div>
+      <div style="font-size: 8px">N TRAIN ETAs</div>
       <div id="predictions"></div>
     </div>
+
+    <script src="sfWeatherNow.js"></script>
+    <script src="script.js"></script>
   </body>
-  <script src="script.js"></script>
 </html>
