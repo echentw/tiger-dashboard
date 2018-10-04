@@ -1,0 +1,8 @@
+NEXTBUS API
+curl http://webservices.nextbus.com/service/publicXMLFeed?command=agencyList
+curl http://webservices.nextbus.com/service/publicXMLFeed?command=routeList&a=sf-muni
+curl http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=sf-muni&r=N
+outbound stop id = 13909
+inbound stop id = 13911
+
+curl http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId=13911
