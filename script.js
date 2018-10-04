@@ -51,7 +51,7 @@ function updateCurrentTime() {
 
 function updateWeather() {
   $.ajax({
-    url: 'http://api.openweathermap.org/data/2.5/weather?id=2172797&APPID=2aff0e5cbbfc2c468be071ac2aa778f4',
+    url: 'http://api.openweathermap.org/data/2.5/weather?id=5391959&APPID=2aff0e5cbbfc2c468be071ac2aa778f4',
     success: function(data) {
       actuallyUpdateWeather(data);
     },

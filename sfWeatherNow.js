@@ -1,42 +1,42 @@
-var SF_WEATHER = {
+{
   "coord": {
-    "lon": 145.77,
-    "lat": -16.92
+    "lon": -122.42,
+    "lat": 37.77
   },
   "weather": [
     {
-      "id": 801,
-      "main": "Clouds",
-      "description": "few clouds",
-      "icon": "02d"
+      "id": 721,
+      "main": "Haze",
+      "description": "haze",
+      "icon": "50n"
     }
   ],
   "base": "stations",
   "main": {
-    "temp": 299.15,
-    "pressure": 1013,
-    "humidity": 50,
-    "temp_min": 299.15,
-    "temp_max": 299.15
+    "temp": 290.75,
+    "pressure": 1014,
+    "humidity": 77,
+    "temp_min": 289.85,
+    "temp_max": 291.45
   },
-  "visibility": 10000,
+  "visibility": 16093,
   "wind": {
-    "speed": 6.2,
-    "deg": 60
+    "speed": 2.1,
+    "deg": 350
   },
   "clouds": {
-    "all": 20
+    "all": 75
   },
-  "dt": 1538634600,
+  "dt": 1538637060,
   "sys": {
     "type": 1,
-    "id": 8166,
-    "message": 0.003,
-    "country": "AU",
-    "sunrise": 1538596623,
-    "sunset": 1538640875
+    "id": 478,
+    "message": 0.0169,
+    "country": "US",
+    "sunrise": 1538662099,
+    "sunset": 1538704052
   },
-  "id": 2172797,
-  "name": "Cairns",
+  "id": 5391959,
+  "name": "San Francisco",
   "cod": 200
 }

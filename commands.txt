@@ -16,4 +16,4 @@ API KEY = 2aff0e5cbbfc2c468be071ac2aa778f4
 curl http://api.openweathermap.org/data/2.5/forecast\?id\=524901\&APPID\=2aff0e5cbbfc2c468be071ac2aa778f4
 
 curl "api.openweathermap.org/data/2.5/forecast?id=5391959&APPID=2aff0e5cbbfc2c468be071ac2aa778f4"
-curl "api.openweathermap.org/data/2.5/weather?id=2172797&APPID=2aff0e5cbbfc2c468be071ac2aa778f4"
+curl "api.openweathermap.org/data/2.5/weather?id=5391959&APPID=2aff0e5cbbfc2c468be071ac2aa778f4"
