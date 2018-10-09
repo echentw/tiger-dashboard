@@ -17,6 +17,10 @@
   justify-content: space-between;
 }
 
+#prediction {
+  margin-bottom: 4px;
+}
+
 .box {
   font-size: 8px;
   font-family: "Pokemon GB", Arial, sans-serif;
@@ -34,14 +38,68 @@
               0 0 0 1px black,
               inset 0 0 0 1px black;
 }
-.box > i {
+
+i {
   width: 0;
   height: 0;
   border: 5px solid transparent;
   border-top-color: black;
   margin-top: 23px;
-  animation: bounce 0.5s ease-in-out 0 infinite alternate;
+
+  /* animation: bounce 0.5s ease-in-out 0 infinite alternate; */
+
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+
   float: right;
+}
+
+@keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-webkit-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-ms-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-o-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
 }
 
 @keyframes bounce {

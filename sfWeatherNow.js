@@ -1,4 +1,4 @@
-{
+var SF_WEATHER = {
   "coord": {
     "lon": -122.42,
     "lat": 37.77

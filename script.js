@@ -9,6 +9,8 @@ setInterval(updateCurrentTime, 1 * 1000); // every second
 setInterval(updateETAs, 10 * 1000); // every 10 seconds
 setInterval(updateWeather, 2 * 60 * 60 * 1000); // every 2 hours
 
+blinkArrow();
+
 function updateETAs() {
   $.ajax({
     url: 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId=13911',
@@ -20,7 +22,7 @@ function updateETAs() {
         .getElementsByTagName('direction')[0]
         .getElementsByTagName('prediction');
 
-      for (var i = 0; i < predictions.length; ++i) {
+      for (var i = 0; i < Math.min(3, predictions.length); ++i) {
         var elem = predictions[i];
         var timestamp = Number(elem.getAttribute('epochTime'));
         var total_seconds = Number(elem.getAttribute('seconds'));
@@ -34,9 +36,15 @@ function updateETAs() {
         var display_string = eta + ' (' + minutes + ' min ' + seconds + ' sec)';
 
         if (i === 0) {
-          $('#predictions').append('<div><b>' + display_string + '</b></div>');
+          $('#predictions').append('<div id="prediction"><b>' + display_string + '</b></div>');
         } else {
-          $('#predictions').append('<div>' + display_string + '</div>');
+          $('#predictions').append('<div id="prediction">' + display_string + '</div>');
+        }
+      }
+
+      if (predictions.length < 3) {
+        for (var i = 0; i < 3 - predictions.length; ++i) {
+          $('#predictions').append('<div id="prediction" style="color: white">you cant see me</div>');
         }
       }
     }
@@ -65,6 +73,21 @@ function actuallyUpdateWeather(data) {
   var tempKelvin = Number(data['main']['temp']);
   var tempFahrenheit = Math.round(tempKelvin * 9.0 / 5.0 - 459.67);
 
+  var date = new Date();
+  var dayOfWeek = [
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+  ][ date.getUTCDay() ];
+
+  $('#today-weather').append('<div>' + dayOfWeek + ', ' + date.toLocaleDateString() + '</div>');
   $('#today-weather').append('<div>' + description + '</div>');
   $('#today-weather').append('<div>' + String(tempFahrenheit) + '&deg;F</div>');
+}
+
+function blinkArrow() {
+  setInterval(function() {
+    $('i').hide();
+    setTimeout(function() {
+      $('i').show();
+    }, 800);
+  }, 2000);
 }
