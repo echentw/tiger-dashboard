@@ -17,10 +17,15 @@ function updateETAs() {
     success: function(data){
       $('#predictions').empty();
 
-      var predictions = data
-        .getElementsByTagName('predictions')[0]
-        .getElementsByTagName('direction')[0]
-        .getElementsByTagName('prediction');
+      var predictions;
+      try {
+        predictions = data
+          .getElementsByTagName('predictions')[0]
+          .getElementsByTagName('direction')[0]
+          .getElementsByTagName('prediction');
+      } catch(e) {
+        predictions = [];
+      }
 
       for (var i = 0; i < Math.min(3, predictions.length); ++i) {
         var elem = predictions[i];
