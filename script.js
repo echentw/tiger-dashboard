@@ -81,7 +81,7 @@ function actuallyUpdateWeather(data) {
   var date = new Date();
   var dayOfWeek = [
     'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
-  ][ date.getUTCDay() ];
+  ][ date.getDay() ];
 
   $('#today-weather').append('<div>' + dayOfWeek + ', ' + date.toLocaleDateString() + '</div>');
   $('#today-weather').append('<div>' + description + '</div>');
