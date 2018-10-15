@@ -14,7 +14,7 @@ blinkArrow();
 function updateETAs() {
   $.ajax({
     url: 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId=13911',
-    success: function(data){
+    success: function(data) {
       $('#predictions').empty();
 
       var predictions;
@@ -77,6 +77,7 @@ function actuallyUpdateWeather(data) {
   var description = data['weather'][0]['description'];
   var tempKelvin = Number(data['main']['temp']);
   var tempFahrenheit = Math.round(tempKelvin * 9.0 / 5.0 - 459.67);
+  var tempCelsius = Math.round(tempKelvin - 273.15);
 
   var date = new Date();
   var dayOfWeek = [
@@ -85,7 +86,9 @@ function actuallyUpdateWeather(data) {
 
   $('#today-weather').append('<div>' + dayOfWeek + ', ' + date.toLocaleDateString() + '</div>');
   $('#today-weather').append('<div>' + description + '</div>');
-  $('#today-weather').append('<div>' + String(tempFahrenheit) + '&deg;F</div>');
+  $('#today-weather').append(
+    '<div>' + String(tempFahrenheit) + '&deg;F / ' + String(tempCelsius) + '&deg;C</div>'
+  );
 }
 
 function blinkArrow() {
