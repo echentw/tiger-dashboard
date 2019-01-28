@@ -1,21 +1,31 @@
-updateCurrentTime();
-updateETAs();
-// updateWeather();
+import * as $ from 'jquery';
+import { xmlToJson } from './xmlToJson';
+import { Model } from './model';
 
-actuallyUpdateWeather(SF_WEATHER);
-// updateWeather();
+import './style.scss';
 
-setInterval(updateCurrentTime, 1 * 1000); // every second
-setInterval(updateETAs, 10 * 1000); // every 10 seconds
-setInterval(updateWeather, 2 * 60 * 60 * 1000); // every 2 hours
+function main() {
+  updateCurrentTime();
+  updateETAs();
+  // updateWeather();
 
-blinkArrow();
+  // actuallyUpdateWeather(SF_WEATHER);
+  updateWeather();
+
+  setInterval(updateCurrentTime, 1 * 1000); // every second
+  // setInterval(updateETAs, 10 * 1000); // every 10 seconds
+  // setInterval(updateWeather, 2 * 60 * 60 * 1000); // every 2 hours
+
+  blinkArrow();
+}
 
 function updateETAs() {
   $.ajax({
     url: 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId=13911',
-    success: function(data) {
+    success: function(data: any) {
       $('#predictions').empty();
+
+      console.log(data);
 
       var predictions;
       try {
@@ -59,7 +69,7 @@ function updateETAs() {
 function updateCurrentTime() {
   var date = new Date();
   $('#current-time').empty();
-  $('#current-time').append('<div>' + date.toLocaleTimeString('en-Us') + '</div>');
+  $('#current-time').append(`<div>${Model.getCurrentTime()}</div>`);
 }
 
 function updateWeather() {
@@ -71,7 +81,7 @@ function updateWeather() {
   });
 }
 
-function actuallyUpdateWeather(data) {
+function actuallyUpdateWeather(data: any) {
   $('#today-weather').empty();
 
   var description = data['weather'][0]['description'];
@@ -99,3 +109,5 @@ function blinkArrow() {
     }, 800);
   }, 2000);
 }
+
+main();
