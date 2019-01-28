@@ -6,14 +6,11 @@ import './style.scss';
 function main() {
   updateCurrentTime();
   updateETAs();
-  // updateWeather();
-
-  // actuallyUpdateWeather(SF_WEATHER);
   updateWeather();
 
   setInterval(updateCurrentTime, 1 * 1000); // every second
-  // setInterval(updateETAs, 10 * 1000); // every 10 seconds
-  // setInterval(updateWeather, 2 * 60 * 60 * 1000); // every 2 hours
+  setInterval(updateETAs, 10 * 1000); // every 10 seconds
+  setInterval(updateWeather, 2 * 60 * 60 * 1000); // every 2 hours
 
   blinkArrow();
 }
