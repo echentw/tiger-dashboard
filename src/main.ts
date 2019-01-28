@@ -51,30 +51,26 @@ function updateCurrentTime() {
 function updateWeather() {
   $.ajax({
     url: 'http://api.openweathermap.org/data/2.5/weather?id=5391959&APPID=2aff0e5cbbfc2c468be071ac2aa778f4',
-    success: function(data) {
-      actuallyUpdateWeather(data);
+    success: function(data: any) {
+      $('#today-weather').empty();
+
+      var description = data['weather'][0]['description'];
+      var tempKelvin = Number(data['main']['temp']);
+      var tempFahrenheit = Math.round(tempKelvin * 9.0 / 5.0 - 459.67);
+      var tempCelsius = Math.round(tempKelvin - 273.15);
+
+      var date = new Date();
+      var dayOfWeek = [
+        'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+      ][ date.getDay() ];
+
+      $('#today-weather').append('<div>' + dayOfWeek + ', ' + date.toLocaleDateString() + '</div>');
+      $('#today-weather').append('<div>' + description + '</div>');
+      $('#today-weather').append(
+        '<div>' + String(tempFahrenheit) + '&deg;F / ' + String(tempCelsius) + '&deg;C</div>'
+      );
     },
   });
-}
-
-function actuallyUpdateWeather(data: any) {
-  $('#today-weather').empty();
-
-  var description = data['weather'][0]['description'];
-  var tempKelvin = Number(data['main']['temp']);
-  var tempFahrenheit = Math.round(tempKelvin * 9.0 / 5.0 - 459.67);
-  var tempCelsius = Math.round(tempKelvin - 273.15);
-
-  var date = new Date();
-  var dayOfWeek = [
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
-  ][ date.getDay() ];
-
-  $('#today-weather').append('<div>' + dayOfWeek + ', ' + date.toLocaleDateString() + '</div>');
-  $('#today-weather').append('<div>' + description + '</div>');
-  $('#today-weather').append(
-    '<div>' + String(tempFahrenheit) + '&deg;F / ' + String(tempCelsius) + '&deg;C</div>'
-  );
 }
 
 function blinkArrow() {
