@@ -1,6 +1,5 @@
 import * as $ from 'jquery';
-import { xmlToJson } from './xmlToJson';
-import { Model } from './model';
+import { Model, ETA, NLineData } from './model';
 
 import './style.scss';
 
@@ -19,51 +18,31 @@ function main() {
   blinkArrow();
 }
 
-function updateETAs() {
-  $.ajax({
-    url: 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId=13911',
-    success: function(data: any) {
-      $('#predictions').empty();
+async function updateETAs() {
+  const data: NLineData = await Model.getNLineETAs();
 
-      console.log(data);
+  const predictions = data.NOwl.predictions;
 
-      var predictions;
-      try {
-        predictions = data
-          .getElementsByTagName('predictions')[0]
-          .getElementsByTagName('direction')[0]
-          .getElementsByTagName('prediction');
-      } catch(e) {
-        predictions = [];
-      }
+  for (let i = 0; i < Math.min(3, predictions.length); ++i) {
+    const eta = predictions[i];
 
-      for (var i = 0; i < Math.min(3, predictions.length); ++i) {
-        var elem = predictions[i];
-        var timestamp = Number(elem.getAttribute('epochTime'));
-        var total_seconds = Number(elem.getAttribute('seconds'));
+    const absoluteTimeString: string = new Date(eta.absoluteTimeSeconds).toLocaleTimeString('en-US');
 
-        var date = new Date(timestamp);
-        var eta = date.toLocaleTimeString('en-US')
+    const minutes = Math.floor(eta.relativeTimeSeconds / 60.0);
+    const seconds = Math.floor(eta.relativeTimeSeconds % 60);
 
-        var minutes = Math.floor(total_seconds / 60);
-        var seconds = total_seconds % 60;
-
-        var display_string = eta + ' (' + minutes + ' min ' + seconds + ' sec)';
-
-        if (i === 0) {
-          $('#predictions').append('<div id="prediction"><b>' + display_string + '</b></div>');
-        } else {
-          $('#predictions').append('<div id="prediction">' + display_string + '</div>');
-        }
-      }
-
-      if (predictions.length < 3) {
-        for (var i = 0; i < 3 - predictions.length; ++i) {
-          $('#predictions').append('<div id="prediction" style="color: white">you cant see me</div>');
-        }
-      }
+    const displayString = `${absoluteTimeString} (${minutes} min ${seconds} sec)`;
+    if (i === 0) {
+      $('#predictions').append(`<div id="prediction"><b>${displayString}</b></div>`);
+    } else {
+      $('#predictions').append(`<div id="prediction">${displayString}</div>`);
     }
-  });
+  }
+  if (predictions.length < 3) {
+    for (var i = 0; i < 3 - predictions.length; ++i) {
+      $('#predictions').append('<div id="prediction" style="color: white">you cant see me</div>');
+    }
+  }
 }
 
 function updateCurrentTime() {
