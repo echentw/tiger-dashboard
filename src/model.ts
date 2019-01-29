@@ -37,13 +37,19 @@ export class Model {
       $.ajax({
         url: 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId=13911',
         success: (data: XMLDocument) => {
-          let predictionsJudah: any;
-          let predictionsOwl: any;
+          let predictionsJudah: any = [];
+          let predictionsOwl: any = [];
           try {
-            predictionsJudah = data
+            const directions = data
               .getElementsByTagName('predictions')[0]
-              .getElementsByTagName('direction')[0]
-              .getElementsByTagName('prediction');
+              .getElementsByTagName('direction');
+
+            for (let i = 0; i < directions.length; ++i) {
+              const predictions = directions[i].getElementsByTagName('prediction');
+              for (let j = 0; j < predictions.length; ++j) {
+                predictionsJudah.push(predictions[j]);
+              }
+            }
           } catch(e) {
             predictionsJudah = [];
           }
@@ -56,9 +62,15 @@ export class Model {
             predictionsOwl = [];
           }
 
+          // Need to sort the N Judah etas.
+          const predictions = Model._extractPredictions(predictionsJudah);
+          predictions.sort((prediction1, prediction2) => {
+            return prediction1.absoluteTimeSeconds - prediction2.absoluteTimeSeconds;
+          });
+
           return resolve({
             NJudah: {
-              predictions: Model._extractPredictions(predictionsJudah),
+              predictions: predictions,
             },
             NOwl: {
               predictions: Model._extractPredictions(predictionsOwl),

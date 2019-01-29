@@ -32,7 +32,7 @@ async function updateETAs() {
 
     const displayString = `${absoluteTimeString} (${minutes} min ${seconds} sec)`;
     if (i === 0) {
-      container.append(`<div class="n-judah-eta text"><b>${displayString}</b></div>`);
+      container.append(`<div class="n-judah-eta text heavy">${displayString}</div>`);
     } else {
       container.append(`<div class="n-judah-eta text">${displayString}</div>`);
     }
