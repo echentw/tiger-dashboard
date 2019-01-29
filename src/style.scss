@@ -1,108 +1,83 @@
-/* @font-face kit by Fonts2u (http://www.fonts2u.com) */
-@font-face {
-  font-family: "Pokemon GB";
-  // src: url("https://dl.dropboxusercontent.com/u/10822923/Pokemon_GB/Pokemon_GB.eot?") format("eot"),
-  //      url("https://dl.dropboxusercontent.com/u/10822923/Pokemon_GB/Pokemon_GB.woff") format("woff"),
-  //      url("https://dl.dropboxusercontent.com/u/10822923/Pokemon_GB/Pokemon_GB.ttf") format("truetype"),
-  //      url("https://dl.dropboxusercontent.com/u/10822923/Pokemon_GB/Pokemon_GB.svg#PokemonGB") format("svg");
-  font-weight: normal;
-  font-style: normal;
+$darkgrey: rgb(40, 40, 40);
+$lightgrey: rgb(180, 180, 180);
+
+.text {
+  font-family: Open Sans;
+  font-weight: 100;
+  color: $lightgrey;
 }
 
-.row {
+body {
+  background-color: $darkgrey;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.outer-container {
   display: flex;
   flex-direction: row;
-  width: 267px;
-  margin: auto;
-  justify-content: space-between;
-}
 
-#prediction {
-  margin-bottom: 4px;
-}
+  height: 100%;
 
-.box {
-  font-size: 8px;
-  font-family: "Pokemon GB", Arial, sans-serif;
-  border-radius: 2px;
-  padding: 8px;
-  width: 250px;
-  height: 28px;
-  line-height: 16px;
-  margin: auto;
-  margin-bottom: 10px;
-  background: white;
-  border: 1px solid white;
-  box-shadow: 0 1px 0 1px black,
-              inset 0 1px 0 1px black,
-              0 0 0 1px black,
-              inset 0 0 0 1px black;
-}
+  .left-container {
+    flex: 1;
 
-i {
-  width: 0;
-  height: 0;
-  border: 5px solid transparent;
-  border-top-color: black;
-  margin-top: 23px;
+    display: flex;
+    flex-direction: column;
 
-  /* animation: bounce 0.5s ease-in-out 0 infinite alternate; */
+    .time-container {
+      font-size: 84px;
 
-  -webkit-animation: 1s blink step-end infinite;
-  -moz-animation: 1s blink step-end infinite;
-  -ms-animation: 1s blink step-end infinite;
-  -o-animation: 1s blink step-end infinite;
-  animation: 1s blink step-end infinite;
+      margin-bottom: 60px;
+    }
 
-  float: right;
-}
+    .n-judah-container {
+      flex: 1;
 
-@keyframes blink {
-  from, to {
-    color: transparent;
+      .n-judah-title {
+        font-size: 56px;
+        margin-bottom: 24px;
+      }
+      .n-judah-etas-container {
+        .n-judah-eta {
+          font-size: 36px;
+          margin-bottom: 16px;
+        }
+      }
+    }
+
+    .fun-fact-container {
+      font-size: 24px;
+      height: 70px;
+    }
   }
-  50% {
-    color: black;
-  }
-}
 
-@-moz-keyframes blink {
-  from, to {
-    color: transparent;
+  .divider {
+    background-color: $lightgrey;
+    width: 10px;
+    transform: skew(15deg);
   }
-  50% {
-    color: black;
-  }
-}
 
-@-webkit-keyframes blink {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
+  .right-container {
+    width: 500px;
 
-@-ms-keyframes blink {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
+    display: flex;
+    flex-direction: column;
 
-@-o-keyframes blink {
-  from, to {
-    color: transparent;
+    .date-container {
+      font-size: 36px;
+      margin-bottom: 80px;
+    }
+    .forecast-container {
+      font-size: 36px;
+      margin-bottom: 80px;
+      margin-left: 40px;
+    }
+    .temperature-container {
+      font-size: 36px;
+      margin-left: 80px;
+    }
   }
-  50% {
-    color: black;
-  }
-}
-
-@keyframes bounce {
-  from { margin-top: 20px; }
-  to { margin-top: 23px; }
 }

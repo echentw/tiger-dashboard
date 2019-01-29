@@ -3,29 +3,30 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/>
     <link rel="stylesheet" href="style.css">
   </header>
   <body>
-
-    <div class="row" style="margin-top: 20px">
-
-      <div class="box" id="time" style="width: 125px; height: 45px; margin-right: 5px">
-        <div style="font-size: 8px">CURRENT TIME</div>
-        <div id="current-time" style="font-size: 14px"></div>
+    <div class="outer-container">
+      <div class="left-container">
+        <div class="time-container text">9:00:00 AM</div>
+        <div class="n-judah-container">
+          <div class="n-judah-title text">
+            N Judah
+          </div>
+          <div class="n-judah-etas-container"></div>
+        </div>
+        <div class="fun-fact-container text">
+          You cannot snore and dream at the same time.
+        </div>
       </div>
-
-      <div class="box" id="weather" style="width: 125px; height: 45px; margin-left: 5px">
-        <div id="today-weather" style="font-size: 10px"></div>
+      <div class="divider"></div>
+      <div class="right-container">
+        <div class="date-container text"></div>
+        <div class="forecast-container text"></div>
+        <div class="temperature-container text"></div>
       </div>
-
     </div>
-
-    <div class="box" style="height: 100px">
-      <div style="font-size: 8px; margin-bottom: 4px">N TRAIN ETAS</div>
-      <div id="predictions" style="font-size: 12px"></div>
-      <i style="margin-top: 12px; margin-right: 4px"></i>
-    </div>
-
     <script src="main.bundle.js"></script>
   </body>
 </html>
