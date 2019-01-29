@@ -7,10 +7,12 @@ function main() {
   updateCurrentTime();
   updateETAs();
   updateWeather();
+  updateRandomFact();
 
   setInterval(updateCurrentTime, 1 * 1000); // every second
   setInterval(updateETAs, 10 * 1000); // every 10 seconds
   setInterval(updateWeather, 2 * 60 * 60 * 1000); // every 2 hours
+  setInterval(updateRandomFact, 1 * 60 * 60 * 1000); // every hour
 }
 
 async function updateETAs() {
@@ -22,7 +24,7 @@ async function updateETAs() {
 
   const predictions = data.NJudah.predictions;
 
-  for (let i = 0; i < Math.min(5, predictions.length); ++i) {
+  for (let i = 0; i < Math.min(4, predictions.length); ++i) {
     const eta = predictions[i];
 
     const absoluteTimeString: string = new Date(eta.absoluteTimeSeconds).toLocaleTimeString('en-US');
@@ -70,6 +72,21 @@ function updateWeather() {
       dateContainer.append(`${dayOfWeek}, ${date.toLocaleDateString()}`);
       forecastContainer.append(description);
       temperatureContainer.append(`${tempFahrenheit} &deg;F / ${tempCelsius} &deg;C`);
+    },
+  });
+}
+
+function updateRandomFact() {
+  $.ajax({
+    url: 'https://quotes.rest/qod',
+    dataType: 'json',
+    success: (data: any) => {
+      const container = $('.fun-fact-container');
+      container.empty();
+
+      const { quote, author }: { quote: string, author: string } = data.contents.quotes[0];
+
+      container.append(`"${quote}" - ${author}`);
     },
   });
 }
