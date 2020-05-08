@@ -49,7 +49,7 @@ function updateCurrentTime() {
 
 function updateWeather() {
   $.ajax({
-    url: 'http://api.openweathermap.org/data/2.5/weather?id=5391959&APPID=2aff0e5cbbfc2c468be071ac2aa778f4',
+    url: 'https://api.openweathermap.org/data/2.5/weather?id=5391959&APPID=2aff0e5cbbfc2c468be071ac2aa778f4',
     success: function(data: any) {
       const dateContainer = $('.date-container');
       const forecastContainer = $('.forecast-container');
